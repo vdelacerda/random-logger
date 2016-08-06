@@ -1,4 +1,4 @@
-package fr.gpmm.randomlogger;
+package fr.vdelacerda.randomlogger;
 
 import java.util.Random;
 
