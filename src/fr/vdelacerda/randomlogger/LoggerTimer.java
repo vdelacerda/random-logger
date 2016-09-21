@@ -7,14 +7,12 @@ import javax.ejb.Singleton;
 import javax.ejb.Timer;
 
 import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 
 @Singleton
 public class LoggerTimer {
 	private int index;
 	private Random random;
 	private Level level;
-	private Logger logger = Logger.getLogger(LoggerTimer.class);
 	
     public LoggerTimer() {
     	random = new Random();
@@ -44,6 +42,11 @@ public class LoggerTimer {
 			level = Level.INFO;
 		}
 		
-		logger.log(level, "toto");
+		LoggerService.log(level, "log du timer");
+    }
+	
+	@Schedule(hour="*/1", persistent=true)
+    private void scheduledSuperLog(final Timer t) {
+		LoggerService.log(Level.ERROR, "SUPER log du timer");
     }
 }
